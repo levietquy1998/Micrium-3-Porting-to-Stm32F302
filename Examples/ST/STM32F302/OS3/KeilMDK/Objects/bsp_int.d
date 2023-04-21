@@ -1,0 +1,16 @@
+.\objects\bsp_int.o: ..\..\BSP\bsp_int.c
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uC-CPU\ARM-Cortex-M4\RealView\cpu.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uC-CPU\cpu_def.h
+.\objects\bsp_int.o: ..\cpu_cfg.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uCOS-III\Source\os.h
+.\objects\bsp_int.o: ..\os_cfg.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uC-CPU\cpu_core.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uC-LIB\lib_def.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uC-LIB\lib_mem.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uC-CPU\cpu_core.h
+.\objects\bsp_int.o: ..\lib_cfg.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uC-LIB\lib_str.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uC-LIB\lib_ascii.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uCOS-III\Source\os_type.h
+.\objects\bsp_int.o: ..\..\..\..\..\Software\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView\os_cpu.h
+.\objects\bsp_int.o: ..\..\BSP\bsp.h

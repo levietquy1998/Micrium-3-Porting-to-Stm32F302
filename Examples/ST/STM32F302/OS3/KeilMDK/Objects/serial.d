@@ -1,0 +1,17 @@
+.\objects\serial.o: ..\..\..\..\..\Software\uC-Serial\Source\serial.c
+.\objects\serial.o: ..\..\..\..\..\Software\uC-Serial\Source\serial.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-CPU\ARM-Cortex-M4\RealView\cpu.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-CPU\cpu_def.h
+.\objects\serial.o: ..\cpu_cfg.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-LIB\lib_def.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-LIB\lib_ascii.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-LIB\lib_str.h
+.\objects\serial.o: ..\lib_cfg.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-LIB\lib_mem.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-CPU\cpu_core.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-LIB\lib_mem.h
+.\objects\serial.o: ..\app_cfg.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-Serial\Source\serial_buf.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-Serial\Source\serial_type.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-Serial\Line\serial_line_dflt.h
+.\objects\serial.o: ..\..\..\..\..\Software\uC-Serial\OS\serial_os.h

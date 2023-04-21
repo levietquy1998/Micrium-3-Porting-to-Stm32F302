@@ -1,0 +1,17 @@
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-Serial\Line\serial_line_tty.c
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-Serial\Source\serial.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-CPU\ARM-Cortex-M4\RealView\cpu.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-CPU\cpu_def.h
+.\objects\serial_line_tty.o: ..\cpu_cfg.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-LIB\lib_def.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-LIB\lib_ascii.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-LIB\lib_str.h
+.\objects\serial_line_tty.o: ..\lib_cfg.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-LIB\lib_mem.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-CPU\cpu_core.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-LIB\lib_mem.h
+.\objects\serial_line_tty.o: ..\app_cfg.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-Serial\Source\serial_buf.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-Serial\Source\serial_type.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-Serial\Line\serial_line_dflt.h
+.\objects\serial_line_tty.o: ..\..\..\..\..\Software\uC-Serial\Line\serial_line_tty.h

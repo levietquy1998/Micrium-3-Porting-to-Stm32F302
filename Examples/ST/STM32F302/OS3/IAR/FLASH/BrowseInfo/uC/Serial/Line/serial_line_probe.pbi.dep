@@ -1,0 +1,24 @@
+C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\FLASH\BrowseInfo\uC/Serial\Line\serial_line_probe.pbi: \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Software\uC-Serial\Line\serial_line_probe.c \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-Serial\Source\serial.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-CPU\ARM-Cortex-M4\IAR\cpu.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\aarch32\intrinsics.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\aarch32\iccarm_builtin.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\yvals.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\DLib_Defaults.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\DLib_Config_Full.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\DLib_Product.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.1\arm\inc\c\aarch32\iar_intrinsics_common.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-CPU\cpu_def.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\cpu_cfg.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-LIB\lib_def.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-LIB\lib_ascii.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-LIB\lib_str.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\lib_cfg.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-LIB\lib_mem.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-CPU\cpu_core.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\app_cfg.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-Serial\Source\serial_buf.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\..\..\Software\uC-Serial\Source\serial_type.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Software\uC-Serial\Line\serial_line_dflt.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Software\uC-Serial\Line\serial_line_probe.h
