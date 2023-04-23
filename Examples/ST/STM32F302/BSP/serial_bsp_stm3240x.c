@@ -391,15 +391,12 @@ static  void  SerialBSP_STM32_USART2_CfgGPIO (CPU_BOOLEAN   flow_ctrl,
 static  void  SerialBSP_STM32_USART3_CfgGPIO (CPU_BOOLEAN   flow_ctrl,
                                               SERIAL_ERR   *perr)
 {
-//    GPIO_InitTypeDef  GPIO_InitStructure;
-//
-//
-//    if (flow_ctrl == DEF_ENABLED) {
-//        *perr = SERIAL_ERR_DRV_INVALID;
-//         return;
-//    }
-//
-//                                                                /* Configure GPIOC.10 as push-pull.                     */
+    if (flow_ctrl == DEF_ENABLED) {
+        *perr = SERIAL_ERR_DRV_INVALID;
+         return;
+    }
+
+//    GPIO_InitTypeDef  GPIO_InitStructure;                        /* Configure GPIOC.10 as push-pull.                     */
 //    GPIO_InitStructure.Pin       = GPIO_PIN_10;
 //    GPIO_InitStructure.Speed     = GPIO_SPEED_FAST;
 //    GPIO_InitStructure.Mode      = GPIO_MODE_AF_PP;
@@ -412,8 +409,8 @@ static  void  SerialBSP_STM32_USART3_CfgGPIO (CPU_BOOLEAN   flow_ctrl,
 //    GPIO_InitStructure.Mode      = GPIO_MODE_AF_PP;
 //    GPIO_InitStructure.Alternate = GPIO_AF7_USART3;
 //    HAL_GPIO_Init(GPIOC, &GPIO_InitStructure);
-//
-//   *perr = SERIAL_ERR_NONE;
+
+   *perr = SERIAL_ERR_NONE;
 }
 
 static  void  SerialBSP_STM32_USART4_CfgGPIO (CPU_BOOLEAN   flow_ctrl,

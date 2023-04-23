@@ -1510,10 +1510,19 @@
             <name>$PROJ_DIR$\..\..\BSP\cpu_bsp.c</name>
         </file>
         <file>
+            <name>$PROJ_DIR$\..\..\BSP\gpio.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\BSP\gpio.h</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\BSP\serial_bsp_stm3240x.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\BSP\serial_bsp_stm3240x.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\BSP\user_defines.h</name>
         </file>
     </group>
     <group>

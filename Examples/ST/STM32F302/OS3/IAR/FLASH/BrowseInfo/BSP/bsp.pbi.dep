@@ -60,4 +60,7 @@ C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\O
   C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\STM32CubeF3\Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_tim.h \
   C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\STM32CubeF3\Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_tim_ex.h \
   C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\STM32CubeF3\Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_uart.h \
-  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\STM32CubeF3\Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_uart_ex.h
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\OS3\IAR\..\..\..\STM32CubeF3\Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_uart_ex.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\BSP\user_defines.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\BSP\gpio.h \
+  C:\Users\LVQ\Downloads\micrium_stm3240g-eval_os3\Micrium\Examples\ST\STM32F302\BSP\user_defines.h

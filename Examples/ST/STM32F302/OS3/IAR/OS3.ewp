@@ -678,7 +678,7 @@
             <data>
                 <extensions></extensions>
                 <cmdline></cmdline>
-                <hasPrio>112</hasPrio>
+                <hasPrio>1</hasPrio>
                 <buildSequence>inputOutputBased</buildSequence>
             </data>
         </settings>
@@ -1165,15 +1165,33 @@
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\BSP\bsp_periph.c</name>
+            <excluded>
+                <configuration>FLASH</configuration>
+            </excluded>
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\BSP\cpu_bsp.c</name>
         </file>
         <file>
+            <name>$PROJ_DIR$\..\..\BSP\gpio.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\BSP\gpio.h</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\BSP\serial_bsp_stm3240x.c</name>
+            <excluded>
+                <configuration>FLASH</configuration>
+            </excluded>
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\BSP\serial_bsp_stm3240x.h</name>
+            <excluded>
+                <configuration>FLASH</configuration>
+            </excluded>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\BSP\user_defines.h</name>
         </file>
     </group>
     <group>
@@ -1826,6 +1844,9 @@
     </group>
     <group>
         <name>uC/Serial</name>
+        <excluded>
+            <configuration>FLASH</configuration>
+        </excluded>
         <group>
             <name>Driver</name>
             <group>

@@ -264,10 +264,7 @@ static  void  AppTaskStart (void *p_arg)
     APP_TRACE_DBG(("Creating Application Tasks\n\r"));
     AppTaskCreate();                                            /* Create Application tasks                             */
 
-    BSP_LED_Off(0u);
-
     while (DEF_TRUE) {                                          /* Task body, always written as an infinite loop.       */
-        BSP_LED_Toggle(0u);
         OSTimeDlyHMSM(0u, 0u, 0u, 100u,
                       OS_OPT_TIME_HMSM_STRICT,
                       &err);
@@ -557,10 +554,11 @@ static  void  AppTaskObj1 (void  *p_arg)
                     0,
                    &os_err);
 #endif
-        OSTimeDlyHMSM( 0u, 0u, 10u, 0u,
+        OSTimeDlyHMSM( 0u, 0u, 1u, 0u,
                        OS_OPT_TIME_HMSM_STRICT,
                       &os_err);
         APP_TRACE_INFO(("Object test task 1 running ....\n"));
+        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_13);
     }
 }
 

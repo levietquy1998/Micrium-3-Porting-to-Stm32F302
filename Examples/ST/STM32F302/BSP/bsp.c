@@ -47,7 +47,7 @@
 #include  <bsp_os.h>
 
 #include  <stm32f3xx_hal.h>
-
+#include  <user_defines.h>
 
 /*
 *********************************************************************************************************
@@ -55,16 +55,6 @@
 *********************************************************************************************************
 */
 
-#define  BSP_BIT_RCC_PLLCFGR_PLLM               25u
-#define  BSP_BIT_RCC_PLLCFGR_PLLN              336u
-#define  BSP_BIT_RCC_PLLCFGR_PLLP                2u
-#define  BSP_BIT_RCC_PLLCFGR_PLLQ                7u
-
-
-#define  BSP_GPIOG_LED1                        DEF_BIT_06
-#define  BSP_GPIOG_LED2                        DEF_BIT_08
-#define  BSP_GPIOI_LED3                        DEF_BIT_09
-#define  BSP_GPIOC_LED4                        DEF_BIT_07
 
 /*
 *********************************************************************************************************
@@ -128,9 +118,110 @@
 *********************************************************************************************************
 */
 
-static  void  BSP_LED_Init        (void);
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+#if USING_NUCLEO_BOARD == 1
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL16;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+#else
+void SystemClock_Config(void)
+{
+    RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+    RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+    RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+		
+    BSP_IntInit();
+
+    HAL_RCC_DeInit();
+
+    __HAL_RCC_PWR_CLK_ENABLE();                                 /* Enable Power Control clock.                          */
+
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE;
+    RCC_OscInitStruct.HSEState       = RCC_HSE_ON;
+		RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+		RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+		RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+    RCC_OscInitStruct.PLL.PLLState   = RCC_PLL_ON;
+    RCC_OscInitStruct.PLL.PLLSource  = RCC_PLLSOURCE_HSE;
+		RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+	
+    HAL_RCC_OscConfig(&RCC_OscInitStruct);
 
 
+    RCC_ClkInitStruct.ClockType      = RCC_CLOCKTYPE_SYSCLK |
+                                       RCC_CLOCKTYPE_HCLK   |
+                                       RCC_CLOCKTYPE_PCLK1  |
+                                       RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_PLLCLK;
+    RCC_ClkInitStruct.AHBCLKDivider  = RCC_SYSCLK_DIV1;          /* HCLK    = AHBCLK  = PLL / AHBPRES(1) = 168MHz.       */
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;           /* APB1CLK = AHBCLK  / APB1DIV(4)       = 42MHz (max).  */
+    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;           /* APB2CLK = AHBCLK  / APB2DIV(2)       = 84MHz.        */
+    HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
+
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1 |
+                                         RCC_PERIPHCLK_RTC    |
+                                         RCC_PERIPHCLK_TIM17  |
+                                         RCC_PERIPHCLK_ADC1;
+    PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
+    PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
+    PeriphClkInit.Tim17ClockSelection = RCC_TIM17CLK_HCLK;
+    PeriphClkInit.Adc1ClockSelection = RCC_ADC1PLLCLK_DIV1;
+    HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit);
+
+    if (HAL_GetREVID() == 0x1001)                               /* ....prefetch is supported                            */
+    {
+      __HAL_FLASH_PREFETCH_BUFFER_ENABLE();                     /* Enable the Flash prefetch                            */
+    }
+}
+#endif
 /*
 *********************************************************************************************************
 *                                               BSP_Init()
@@ -161,48 +252,9 @@ static  void  BSP_LED_Init        (void);
 
 void  BSP_Init (void)
 {
-    RCC_OscInitTypeDef  RCC_OscInitStruct;
-    RCC_ClkInitTypeDef  RCC_ClkInitStruct;
 
-    BSP_IntInit();
-
-    HAL_RCC_DeInit();
-
-    __HAL_RCC_PWR_CLK_ENABLE();                                 /* Enable Power Control clock.                          */
-                                                                /* See Note 3.                                          */
-//    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-
-                                                                /* PLLCLK    = HSE * (PLLN / PLLM)      = 336MHz.       */
-                                                                /* SYSCLK    = PLLCLK / PLLP            = 168MHz.       */
-                                                                /* OTG_FSCLK = PLLCLK / PLLQ            =  48MHz.       */
-    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-    RCC_OscInitStruct.HSEState       = RCC_HSE_ON;
-    RCC_OscInitStruct.PLL.PLLState   = RCC_PLL_ON;
-    RCC_OscInitStruct.PLL.PLLSource  = RCC_PLLSOURCE_HSE;
-//    RCC_OscInitStruct.PLL.PLLM       = BSP_BIT_RCC_PLLCFGR_PLLM;
-//    RCC_OscInitStruct.PLL.PLLN       = BSP_BIT_RCC_PLLCFGR_PLLN;
-//    RCC_OscInitStruct.PLL.PLLP       = BSP_BIT_RCC_PLLCFGR_PLLP;
-//    RCC_OscInitStruct.PLL.PLLQ       = BSP_BIT_RCC_PLLCFGR_PLLQ;
-    HAL_RCC_OscConfig(&RCC_OscInitStruct);
-
-
-    RCC_ClkInitStruct.ClockType      = RCC_CLOCKTYPE_SYSCLK |
-                                       RCC_CLOCKTYPE_HCLK   |
-                                       RCC_CLOCKTYPE_PCLK1  |
-                                       RCC_CLOCKTYPE_PCLK2;
-    RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_PLLCLK;
-    RCC_ClkInitStruct.AHBCLKDivider  = RCC_SYSCLK_DIV1;          /* HCLK    = AHBCLK  = PLL / AHBPRES(1) = 168MHz.       */
-    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;           /* APB1CLK = AHBCLK  / APB1DIV(4)       = 42MHz (max).  */
-    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;           /* APB2CLK = AHBCLK  / APB2DIV(2)       = 84MHz.        */
-    HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
-
-                                                                /* STM32F405x/407x/415x/417x Revision Z devices: ...... */
-    if (HAL_GetREVID() == 0x1001)                               /* ....prefetch is supported                            */
-    {
-      __HAL_FLASH_PREFETCH_BUFFER_ENABLE();                     /* Enable the Flash prefetch                            */
-    }
-
-    BSP_LED_Init();                                             /* Init LEDs.                                           */
+    SystemClock_Config();                                       /* Init Clock                                           */
+    MX_GPIO_Init();                                             /* Init GPIOs                                           */
 
 #ifdef TRACE_EN                                                 /* See project / compiler preprocessor options.         */
     BSP_CPU_REG_DBGMCU_CR |=  BSP_DBGMCU_CR_TRACE_IOEN_MASK;    /* Enable tracing (see Note #2).                        */
@@ -298,228 +350,4 @@ void BSP_Tick_Init (void)
 #endif
 
     OS_CPU_SysTickInit(cnts);                                   /* Init uC/OS periodic time src (SysTick).              */
-}
-
-
-/*
-*********************************************************************************************************
-*                                           BSP_LED_Init()
-*
-* Description : Initialize any or all the LEDs on the board.
-*
-* Argument(s) : led     The ID of the LED to control:
-*
-*                       0    inialize ALL  LEDs
-*                       1    inialize user LED1
-*                       2    inialize user LED2
-*                       3    inialize user LED3
-*                       4    inialize user LED4
-*
-* Return(s)   : none.
-*
-* Caller(s)   : Application.
-*
-* Note(s)     : none.
-*********************************************************************************************************
-*/
-
-static void  BSP_LED_Init()
-{
-//    GPIO_InitTypeDef  gpio_init;
-//
-//
-//    BSP_PeriphEn(BSP_PERIPH_ID_GPIOG);                          /* Configure GPIOG for LED1 and LED2                    */
-//
-//    gpio_init.Pin   = BSP_GPIOG_LED1 | BSP_GPIOG_LED2;
-//    gpio_init.Pin   = BSP_GPIOG_LED1 | BSP_GPIOG_LED2;
-//    gpio_init.Mode  = GPIO_MODE_OUTPUT_PP;
-//    gpio_init.Pull  = GPIO_PULLUP;
-//    gpio_init.Speed = GPIO_SPEED_HIGH;
-//
-//    HAL_GPIO_Init(GPIOG, &gpio_init);
-//
-//    BSP_PeriphEn(BSP_PERIPH_ID_GPIOI);                          /* Configure GPIOI for LED3                             */
-//
-//    gpio_init.Pin = BSP_GPIOI_LED3;
-//    HAL_GPIO_Init(GPIOI, &gpio_init);
-//
-//
-//    BSP_PeriphEn(BSP_PERIPH_ID_GPIOC);                          /* Configure GPIOC for LED4                             */
-//
-//    gpio_init.Pin = BSP_GPIOC_LED4;
-//    HAL_GPIO_Init(GPIOC, &gpio_init);
-}
-
-
-/*
-*********************************************************************************************************
-*                                             BSP_LED_On()
-*
-* Description : Turn ON any or all the LEDs on the board.
-*
-* Argument(s) : led     The ID of the LED to control:
-*
-*                       0    turns ON ALL  LEDs
-*                       1    turns ON user LED1
-*                       2    turns ON user LED2
-*                       3    turns ON user LED3
-*                       4    turns ON user LED4
-*
-* Return(s)   : none.
-*
-* Caller(s)   : Application.
-*
-* Note(s)     : none.
-*********************************************************************************************************
-*/
-
-void  BSP_LED_On (CPU_INT08U  led)
-{
-//    switch (led) {
-//        case 0u:
-//             HAL_GPIO_WritePin(GPIOG, (BSP_GPIOG_LED1 | BSP_GPIOG_LED2), GPIO_PIN_SET);
-//             HAL_GPIO_WritePin(GPIOI, BSP_GPIOI_LED3, GPIO_PIN_SET);
-//             HAL_GPIO_WritePin(GPIOC, BSP_GPIOC_LED4, GPIO_PIN_SET);
-//             break;
-//
-//
-//        case 1u:
-//             HAL_GPIO_WritePin(GPIOG, BSP_GPIOG_LED1, GPIO_PIN_SET);
-//             break;
-//
-//
-//        case 2u:
-//             HAL_GPIO_WritePin(GPIOG, BSP_GPIOG_LED2, GPIO_PIN_SET);
-//             break;
-//
-//
-//        case 3u:
-//             HAL_GPIO_WritePin(GPIOI, BSP_GPIOI_LED3, GPIO_PIN_SET);
-//             break;
-//
-//
-//        case 4u:
-//             HAL_GPIO_WritePin(GPIOC, BSP_GPIOC_LED4, GPIO_PIN_SET);
-//             break;
-//
-//
-//        default:
-//             break;
-//    }
-}
-
-
-/*
-*********************************************************************************************************
-*                                              BSP_LED_Off()
-*
-* Description : Turn OFF any or all the LEDs on the board.
-*
-* Argument(s) : led     The ID of the LED to control:
-*
-*                       0    turns OFF ALL the LEDs
-*                       1    turns OFF user LED1
-*                       2    turns OFF user LED2
-*                       3    turns OFF user LED3
-*                       4    turns OFF user LED4
-*
-* Return(s)   : none.
-*
-* Caller(s)   : Application.
-*
-* Note(s)     : none.
-*********************************************************************************************************
-*/
-
-void  BSP_LED_Off (CPU_INT08U led)
-{
-//    switch (led) {
-//        case 0u:
-//             HAL_GPIO_WritePin(GPIOG, (BSP_GPIOG_LED1 | BSP_GPIOG_LED2), GPIO_PIN_RESET);
-//             HAL_GPIO_WritePin(GPIOI, BSP_GPIOI_LED3, GPIO_PIN_RESET);
-//             HAL_GPIO_WritePin(GPIOC, BSP_GPIOC_LED4, GPIO_PIN_RESET);
-//             break;
-//
-//
-//        case 1u:
-//             HAL_GPIO_WritePin(GPIOG, BSP_GPIOG_LED1, GPIO_PIN_RESET);
-//             break;
-//
-//
-//        case 2u:
-//             HAL_GPIO_WritePin(GPIOG, BSP_GPIOG_LED2, GPIO_PIN_RESET);
-//             break;
-//
-//
-//        case 3u:
-//             HAL_GPIO_WritePin(GPIOI, BSP_GPIOI_LED3, GPIO_PIN_RESET);
-//             break;
-//
-//
-//        case 4u:
-//             HAL_GPIO_WritePin(GPIOC, BSP_GPIOC_LED4, GPIO_PIN_RESET);
-//             break;
-//
-//
-//        default:
-//             break;
-//    }
-}
-
-
-/*
-*********************************************************************************************************
-*                                            BSP_LED_Toggle()
-*
-* Description : TOGGLE any or all the LEDs on the board.
-*
-* Argument(s) : led     The ID of the LED to control:
-*
-*                       0    TOGGLE ALL the LEDs
-*                       1    TOGGLE user LED1
-*                       2    TOGGLE user LED2
-*                       3    TOGGLE user LED3
-*                       4    TOGGLE user LED4
-*
-* Return(s)   : none.
-*
-* Caller(s)   : Application.
-*
-* Note(s)     : none.
-*********************************************************************************************************
-*/
-
-void  BSP_LED_Toggle (CPU_INT08U  led)
-{
-//    switch (led) {
-//        case 0u:
-//             HAL_GPIO_TogglePin(GPIOG,(BSP_GPIOG_LED1 | BSP_GPIOG_LED2));
-//             HAL_GPIO_TogglePin(GPIOI, BSP_GPIOI_LED3);
-//             HAL_GPIO_TogglePin(GPIOC, BSP_GPIOC_LED4);
-//             break;
-//
-//
-//        case 1u:
-//             HAL_GPIO_TogglePin(GPIOG,BSP_GPIOG_LED1);
-//             break;
-//
-//
-//        case 2u:
-//             HAL_GPIO_TogglePin(GPIOG, BSP_GPIOG_LED2);
-//             break;
-//
-//
-//        case 3u:
-//             HAL_GPIO_TogglePin(GPIOI, BSP_GPIOI_LED3);
-//             break;
-//
-//
-//        case 4u:
-//             HAL_GPIO_TogglePin(GPIOC, BSP_GPIOC_LED4);
-//             break;
-//
-//
-//        default:
-//             break;
-//    }
 }
