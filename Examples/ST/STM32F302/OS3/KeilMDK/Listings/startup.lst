@@ -678,11 +678,11 @@ ARM Macro Assembler    Page 11
               E000EF34 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
-interwork --depend=.\objects\startup.d -o.\objects\startup.o -IC:\Users\LVQ\App
-Data\Local\Arm\Packs\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx
-\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --prede
-fine="__UVISION_VERSION SETA 534" --predefine="STM32F302x8 SETA 1" --list=.\lis
-tings\startup.lst ..\..\BSP\KeilMDK\startup.s
+interwork --depend=.\objects\startup.d -o.\objects\startup.o -I"C:\Users\Surfac
+e Pro\AppData\Local\Arm\Packs\Keil\STM32F3xx_DFP\2.2.2\Drivers\CMSIS\Device\ST\
+STM32F3xx\Include" -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 
+1" --predefine="__UVISION_VERSION SETA 534" --predefine="STM32F302x8 SETA 1" --
+list=.\listings\startup.lst ..\..\BSP\KeilMDK\startup.s
 
 
 

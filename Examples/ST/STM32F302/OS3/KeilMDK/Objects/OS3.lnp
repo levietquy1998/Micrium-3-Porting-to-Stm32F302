@@ -10,6 +10,7 @@
 ".\objects\startup.o"
 ".\objects\bsp_os.o"
 ".\objects\system_stm32f3xx.o"
+".\objects\gpio.o"
 ".\objects\cpu_core.o"
 ".\objects\cpu_a.o"
 ".\objects\cpu_c.o"

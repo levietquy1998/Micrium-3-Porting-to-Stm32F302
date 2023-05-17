@@ -53,3 +53,6 @@
 .\objects\bsp.o: ..\..\..\STM32CubeF3\Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_tim_ex.h
 .\objects\bsp.o: ..\..\..\STM32CubeF3\Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_uart.h
 .\objects\bsp.o: ..\..\..\STM32CubeF3\Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_uart_ex.h
+.\objects\bsp.o: ..\..\BSP\user_defines.h
+.\objects\bsp.o: ..\..\BSP\gpio.h
+.\objects\bsp.o: ..\..\BSP\user_defines.h
