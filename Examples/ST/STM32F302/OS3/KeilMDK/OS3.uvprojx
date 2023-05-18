@@ -512,7 +512,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>STM32CubeF4 CMSIS</GroupName>
+          <GroupName>STM32CubeF3 CMSIS</GroupName>
           <Files>
             <File>
               <FileName>stm32f3xx.h</FileName>
